@@ -1,0 +1,4 @@
+{
+  "saml": "https://dtechhs.instructure.com/login/saml",
+  "canvas": "https://dtechhs.instructure.com/login/canvas"
+}
