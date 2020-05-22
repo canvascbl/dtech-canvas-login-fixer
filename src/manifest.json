@@ -18,7 +18,9 @@
   "permissions": [
     "storage",
     "tabs",
-    "https://go.canvascbl.com/"
+    "https://go.canvascbl.com/",
+    "https://canvascbl.com/",
+    "https://canvascbl.github.io/"
   ],
   "browser_action": {}
 }

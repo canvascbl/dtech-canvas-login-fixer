@@ -24,25 +24,26 @@
             <h2>Toggle</h2>
             <p class="lead">Here, you can disable this extension completely.</p>
             <form id="enabled_settings" class="form-check" action="">
-                <input id="enabled_checkbox" type="checkbox" disabled>
-                <label for="enabled_checkbox">Enable auto-forwarding</label><br/>
+                <input id="enabled_checkbox" type="checkbox" class="form-check-input" disabled>
+                <label for="enabled_checkbox" class="form-check-label">Enable auto-forwarding</label><br/>
             </form>
             <h2>Forwarding</h2>
             <p class="lead">
                 When enabled, this extension will automatically redirect you to one of the login options.
             </p>
             <form id="forwarding_settings" class="form-check" action="">
-                <input id="saml_radio" name="forward_to" type="radio" disabled>
-                <label for="saml_radio">Student/Staff login</label><br/>
-                <input id="canvas_radio" name="forward_to" type="radio" disabled>
-                <label for="canvas_radio">Parent login</label><br/>
+                <input id="saml_radio" name="forward_to" type="radio" class="form-check-input" disabled>
+                <label for="saml_radio" class="form-check-label">Student/Staff login</label><br/>
+                <input id="canvas_radio" name="forward_to" type="radio" class="form-check-input" disabled>
+                <label for="canvas_radio" class="form-check-label">Parent login</label><br/>
             </form>
+            <span class="plg-2"></span>
             <h2>Visit d.tech Family Portal</h2>
             <p class="lead">Want to visit the d.tech Family Portal anyway? Click below.</p>
             <p>When visiting via the below button, you won't get redirected to a sign-in
                 option even when Enable auto-forwarding is enabled.</p>
             <a href="https://sites.google.com/dtechhs.org/dtechfamilyportal/home?dtech_canvas_fixer_no_redirect=true">
-                <button id="visit_dtech_family_portal" class="btn btn-secondary btn-sm">Visit d.tech Family Portal</button>
+                <button id="visit_dtech_family_portal" class="btn btn-secondary btn-sm">Stay on the d.tech Family Portal</button>
             </a>
         </div>
     </main>
@@ -50,7 +51,7 @@
     <footer class="footer mt-auto py-3">
         <div class="container">
             <span class="text-muted">
-                Made by the folks at <a href="https://canvascbl.com?utm_source=dtech_canvas_fixer&utm_medium=settings_footer" target="_blank">CanvasCBL</a>.
+                Made by Sam Mendelson, founder of <a href="https://canvascbl.com?utm_source=dtech_canvas_fixer&utm_medium=settings_footer" target="_blank">CanvasCBL</a>.
             </span>
         </div>
     </footer>

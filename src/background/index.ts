@@ -65,3 +65,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.create({ url: settingsUrl });
 });
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    chrome.tabs.create({ url: settingsUrl });
+  }
+})
