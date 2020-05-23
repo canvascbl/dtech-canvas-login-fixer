@@ -28,12 +28,12 @@ async function handleMessage(
       }
 
       if (!forwardingDestination) {
-        sendResponse(settingsUrl);
+        openSettingsInNewTab();
+        chrome.tabs.remove(sender.tab.id);
         return;
       }
 
       const urlMap = await getUrlMap();
-      console.log(urlMap);
       sendResponse(urlMap[forwardingDestination]);
       return;
     case GET_CONFIG:
@@ -62,12 +62,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   return true;
 });
 
-chrome.browserAction.onClicked.addListener(() => {
+function openSettingsInNewTab() {
   chrome.tabs.create({ url: settingsUrl });
+}
+
+chrome.browserAction.onClicked.addListener(() => {
+  openSettingsInNewTab();
 });
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
-    chrome.tabs.create({ url: settingsUrl });
+    openSettingsInNewTab();
   }
 })

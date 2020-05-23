@@ -43,25 +43,6 @@ module.exports = {
     ],
   },
 
-  // // only use terser in prod
-  // optimization: !isDev
-  //   ? {
-  //       minimizer: [
-  //         new TerserPlugin({
-  //           test: /\.[tj]s$/,
-  //           exclude: "node_modules",
-  //           parallel: true,
-  //           sourceMap: isDev,
-  //           terserOptions: {
-  //             keep_classnames: false,
-  //             keep_fnames: false,
-  //             mangle: true,
-  //           },
-  //         }),
-  //       ],
-  //     }
-  //   : {},
-
   plugins: [
     // remove old build files before run (prod only!)
     new CleanWebpackPlugin({
@@ -77,6 +58,10 @@ module.exports = {
           from: "src/public",
           to: "public",
         },
+        {
+          from: "img/extension",
+          to: "img"
+        }
       ],
     }),
 
@@ -87,8 +72,5 @@ module.exports = {
       }`,
       entryOnly: true,
     }),
-
-    // create a progress bar when building
-    // new ProgressBarPlugin(),
   ],
 };

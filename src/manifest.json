@@ -22,5 +22,11 @@
     "https://canvascbl.com/",
     "https://canvascbl.github.io/"
   ],
-  "browser_action": {}
+  "browser_action": {},
+  "icons": {
+    "16": "img/16px.png",
+    "48": "img/48px.png",
+    "128": "img/128px.png",
+    "256": "img/256px.png"
+  }
 }
