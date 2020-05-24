@@ -1,0 +1,25 @@
+language: node_js
+os: linux
+env:
+  global:
+  - secure: UeLwcOOo9b+z8kJ4Lz1cwW5RCtwJNBaBbKX9iblIwM4WCn4K/hqVt48f4D3bELXGMBtje3yYDJA9MhshascslDNx93FaUK23dFDMH16HCENVXYVOYXWxzZri2fd3ull5yKgcPoOZ1uIDkg0rmiytLsQNsIm1rUQ/3M9pQyingv5sbcCUCqgOtBLoYqPTve9i+oZuuWDAq7pxrpx1hQ/wswoBqncD6iMgVuMKHnObzyBBW4zA2tObgLAyGTth82m1IJU/PQphV7kn90YriGWgPSpqbAfbKvgwOkiVhpcOxxjso1hhTPxInt5IJxoRiyPg6leZe1kTqQupX63Vx1X96+JJqt12YzBPBrNpE2Q3qqcJ9VvF2TqI6QIzlAHlCxzynKA9OM3R+3kmRjJOfZ6WUV/oZWGQ/yT9tk3HxpzlrEnN1Rkhy5+c7+J/gD6rE8Of503NrSvr7SWvzY3wwgDEUml/NEUWwIvdHT6kOMksjv93JCxBgnAwNIlpSivefZquea86ikgmAsEdCYyRrpp+hKMX539Qprrt0O8Vjpl4ppg1ne28Ty3ft0PrC2HtUdqUYd8VvUBd+QFqb1TgEsq3D5rBYfrFcY7swfBgmNEANXFzxCKecWBVqKnUWo4t0+AekPtoyFlLTfxlzowETussEUv3LQ7EI9hPiB9RNgRgcHw=
+install:
+  - yarn install
+script:
+  - yarn build
+  - cd bin && zip -r ../extension.zip . && cd ..
+before_deploy:
+  - export RELEASES_TAG_NAME=v$(jq -r .version src/manifest.json)
+  - export RELEASES_RELEASE_NOTES=$TRAVIS_COMMIT_MESSAGE
+  - export RELEASES_TARGET_COMMITISH=$TRAVIS_COMMIT
+  - git config --local user.name "iamtheyammerdeploy"
+  - git config --local user.email "65838519+iamtheyammerdeploy@users.noreply.github.com"
+  - git tag $RELEASES_TAG_NAME
+deploy:
+  provider: releases
+  user: iamtheyammerdeploy
+  file: extension.zip
+  draft: false
+  edge: true
+  on:
+    branch: master
