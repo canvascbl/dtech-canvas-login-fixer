@@ -7,12 +7,12 @@
   "content_scripts": [
     {
       "matches": ["https://sites.google.com/dtechhs.org/dtechfamilyportal/home"],
-      "js": ["public/redirect.js"],
+      "js": ["content_scripts/redirect.bundle.js"],
       "run_at": "document_start"
     }
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.bundle.js"],
     "persistent": true
   },
   "permissions": [

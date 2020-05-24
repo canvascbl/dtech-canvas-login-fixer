@@ -11,10 +11,24 @@ module.exports = {
 
   entry: {
     background: "./src/background/index.ts",
+    settings_ui: "./src/ui/settings/js/index.ts",
+    redirect_content_script: "./src/content_scripts/redirect.js"
   },
 
   output: {
     path: path.join(__dirname, "bin"),
+    filename: (chunkData) => {
+      switch (chunkData.chunk.name) {
+        case 'background':
+          return 'background.bundle.js'
+        case 'settings_ui':
+          return 'ui/settings/index.bundle.js'
+        case 'redirect_content_script':
+          return 'content_scripts/redirect.bundle.js'
+        default:
+          return '[name].bundle.js'
+      }
+    }
   },
 
   devtool: isDev ? "source-map" : false,
@@ -25,17 +39,9 @@ module.exports = {
 
   module: {
     rules: [
-      // {
-      //   test: /\.[tj]s$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: "babel-loader",
-      //   },
-      // },
       {
         // not on test files
         test: /^[^.]+\.tsx?$/,
-        // exclude: /node_modules/,
         use: {
           loader: "ts-loader",
         },
@@ -55,8 +61,11 @@ module.exports = {
       patterns: [
         { from: "src/manifest.json", to: "" },
         {
-          from: "src/public",
-          to: "public",
+          from: "src/ui",
+          to: "ui",
+          globOptions: {
+            ignore: ['**/js/**']
+          }
         },
         {
           from: "img/extension",

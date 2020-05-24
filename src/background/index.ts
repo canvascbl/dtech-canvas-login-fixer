@@ -7,7 +7,7 @@ const GET_CONFIG = "GET_CONFIG";
 const SET_ENABLED = "SET_ENABLED";
 const SET_FORWARDING_DESTINATION = "SET_FORWARDING_DESTINATION";
 
-const settingsUrl = chrome.runtime.getURL("/public/settings/index.html");
+const settingsUrl = chrome.runtime.getURL("/ui/settings/index.html");
 export const noRedirectFamilyPortalUrl =
   "https://sites.google.com/dtechhs.org/dtechfamilyportal/home?dtech_canvas_fixer_no_redirect=true";
 
