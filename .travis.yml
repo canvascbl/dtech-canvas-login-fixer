@@ -17,7 +17,7 @@ deploy:
   provider: releases
   user: iamtheyammerdeploy
   file: extension.zip
-  draft: false
+  draft: true
   edge: true
   on:
     branch: master
