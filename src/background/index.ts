@@ -34,7 +34,7 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   {
     urls: ["*://sites.google.com/dtechhs.org/dtechfamilyportal/home*"],
-    types: ["main_frame", "sub_frame"],
+    types: ["main_frame"],
   }
 );
 
