@@ -4,7 +4,7 @@ import {
   getParentLoginCheckbox,
   getStudentStaffLoginCheckbox,
   toggleChecked,
-  toggleDisabled
+  toggleDisabled,
 } from "./domutil";
 
 interface Config {
@@ -33,8 +33,8 @@ function init(config: Config): void {
       break;
     default:
       noLoginTypeAlertId = addAlert(
-          "warning",
-          "You haven't set a login type! Set one below to get started."
+        "warning",
+        "You haven't set a login type! Set one below to get started."
       );
       break;
   }
@@ -44,34 +44,38 @@ function init(config: Config): void {
 
 chrome.runtime.sendMessage({ type: "GET_CONFIG" }, (config) => init(config));
 
-function saveForwardingSetting(forwardingDestination: Config["forwardingDestination"]) {
+function saveForwardingSetting(
+  forwardingDestination: Config["forwardingDestination"]
+) {
   if (noLoginTypeAlertId) {
     document.getElementById(noLoginTypeAlertId).remove();
     noLoginTypeAlertId = "";
   }
 
   chrome.runtime.sendMessage(
-      {
-        type: "SET_FORWARDING_DESTINATION",
-        forwardingDestination,
-      },
-      ({ success }) => {
-        if (success) {
-          addAlert(
-              "success",
-              "Saved forwarding destination! Head to Canvas when you're logged out to try it!",
-              2500
-          );
-        } else {
-          addAlert("danger", "Error saving forwarding destination", 2500);
-        }
+    {
+      type: "SET_FORWARDING_DESTINATION",
+      forwardingDestination,
+    },
+    ({ success }) => {
+      if (success) {
+        addAlert(
+          "success",
+          "Saved forwarding destination! Head to Canvas when you're logged out to try it!",
+          2500
+        );
+      } else {
+        addAlert("danger", "Error saving forwarding destination", 2500);
       }
+    }
   );
 }
 
-getEnableAutoForwardingCheckbox().addEventListener("click", async (e: MouseEvent) => {
-  const target = e.target as HTMLInputElement;
-  chrome.runtime.sendMessage(
+getEnableAutoForwardingCheckbox().addEventListener(
+  "click",
+  async (e: MouseEvent) => {
+    const target = e.target as HTMLInputElement;
+    chrome.runtime.sendMessage(
       { type: "SET_ENABLED", enabled: target.checked },
       ({ success }) => {
         if (success) {
@@ -80,12 +84,13 @@ getEnableAutoForwardingCheckbox().addEventListener("click", async (e: MouseEvent
           addAlert("danger", "Error saving auto-forwarding setting", 2500);
         }
       }
-  );
-});
+    );
+  }
+);
 
 getStudentStaffLoginCheckbox().addEventListener("click", () =>
-    saveForwardingSetting("saml")
+  saveForwardingSetting("saml")
 );
 getParentLoginCheckbox().addEventListener("click", () =>
-    saveForwardingSetting("canvas")
+  saveForwardingSetting("canvas")
 );
