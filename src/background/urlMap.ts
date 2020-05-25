@@ -8,6 +8,7 @@ export interface UrlMap {
 }
 
 export interface FullUrlMap extends UrlMap {
+  // epoch seconds when fetched
   fetchedAt: number;
 }
 
@@ -17,8 +18,16 @@ let map: FullUrlMap = {
   fetchedAt: 0,
 };
 
+function getEpochSeconds(): FullUrlMap["fetchedAt"] {
+  return Math.floor(Date.now()/1000)
+}
+
+function shouldRefetch(fetchedAt: FullUrlMap["fetchedAt"]): boolean {
+  return fetchedAt < getEpochSeconds() - 86400
+}
+
 export async function getUrlMap() {
-  if (map.fetchedAt < Date.now() - 3600000) {
+  if (shouldRefetch(map.fetchedAt)) {
     map = await fetchUrlMap();
   }
 
@@ -35,7 +44,7 @@ async function fetchUrlMap(): Promise<FullUrlMap> {
     return {
       saml: mapReq.data.saml,
       canvas: mapReq.data.canvas,
-      fetchedAt: Date.now(),
+      fetchedAt: getEpochSeconds(),
     } as FullUrlMap;
   } catch (e) {
     return {

@@ -11,6 +11,10 @@ const settingsUrl = chrome.runtime.getURL("/ui/settings/index.html");
 export const noRedirectFamilyPortalUrl =
   "https://sites.google.com/dtechhs.org/dtechfamilyportal/home?dtech_canvas_fixer_no_redirect=true";
 
+function openSettingsInNewTab(): void {
+  chrome.tabs.create({ url: settingsUrl });
+}
+
 async function handleMessage(
   msg: any,
   sender: chrome.runtime.MessageSender,
@@ -57,21 +61,23 @@ async function handleMessage(
   }
 }
 
+// add onMessage listener
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   handleMessage(msg, sender, sendResponse);
   return true;
 });
 
-function openSettingsInNewTab() {
-  chrome.tabs.create({ url: settingsUrl });
-}
-
+// add onClicked listener
 chrome.browserAction.onClicked.addListener(() => {
   openSettingsInNewTab();
 });
 
+// add onInstalled listener
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
     openSettingsInNewTab();
   }
 })
+
+// fetch the URL map on startup
+getUrlMap()
