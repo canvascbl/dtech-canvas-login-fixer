@@ -4,6 +4,7 @@ cache: yarn
 install:
   - yarn install
 script:
+  - yarn format --check
   - yarn build
 before_deploy:
   - cd bin && zip -r ../extension.zip . && cd ..
