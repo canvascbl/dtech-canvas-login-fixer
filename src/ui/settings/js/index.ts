@@ -3,6 +3,7 @@ import {
   getEnableAutoForwardingCheckbox,
   getParentLoginCheckbox,
   getStudentStaffLoginCheckbox,
+  fetchAndSetVersion,
   toggleChecked,
   toggleDisabled,
 } from "./domutil";
@@ -15,6 +16,8 @@ interface Config {
 let noLoginTypeAlertId: string;
 
 function init(config: Config): void {
+  fetchAndSetVersion();
+
   const autoForwardCheckbox = getEnableAutoForwardingCheckbox();
   if (config.enabled) {
     toggleChecked(autoForwardCheckbox);

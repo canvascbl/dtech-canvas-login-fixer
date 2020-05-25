@@ -49,7 +49,7 @@
             <a href="https://sites.google.com/dtechhs.org/dtechfamilyportal/home?dtech_canvas_fixer_no_redirect=true">
                 <button id="visit_dtech_family_portal" class="btn btn-outline-secondary btn-sm">Visit and stay on the d.tech Family Portal</button>
             </a>
-            <div id="get_started_container">
+            <div id="get_started_container" class="pb-5">
                 <hr>
                 <a href="https://dtechhs.instructure.com">
                     <button class="btn btn-success btn-block btn-lg">Go to Canvas</button>
@@ -60,9 +60,14 @@
 
     <footer class="footer mt-auto py-3">
         <div class="container">
-            <span class="text-muted">
-                Made by Sam Mendelson, founder of <a href="https://canvascbl.com?utm_source=dtech_canvas_fixer&utm_medium=settings_footer" target="_blank">CanvasCBL</a>.
-            </span>
+            <div class="row flex-wrap text-muted">
+                <div class="col">
+                    Made by Sam Mendelson, founder of <a href="https://canvascbl.com?utm_source=dtech_canvas_fixer&utm_medium=settings_footer" target="_blank">CanvasCBL</a>.
+                </div>
+                <div class="col-3 text-right">
+                    Version <span id="version-field">loading...</span>
+                </div>
+            </div>
         </div>
     </footer>
 

@@ -3,6 +3,9 @@ const randString = (): string => `${Math.random()}`;
 const getAlertContainer = (): HTMLElement =>
   document.getElementById("alert_container");
 
+const getVersionField = (): HTMLElement =>
+  document.getElementById("version-field");
+
 export const getEnableAutoForwardingCheckbox = (): HTMLElement =>
   document.getElementById("enabled_checkbox");
 
@@ -39,4 +42,9 @@ export function toggleDisabled(el: HTMLElement): void {
 
 export function toggleChecked(el: HTMLElement): void {
   el.toggleAttribute("checked");
+}
+
+export async function fetchAndSetVersion(): Promise<void> {
+  const { version } = chrome.runtime.getManifest();
+  getVersionField().innerText = version;
 }
