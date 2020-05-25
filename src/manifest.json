@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "d.tech Canvas Login Fixer",
-  "version": "0.1.1",
+  "version": "0.2",
   "description": "Remembers if you're a parent or a student when logging into d.tech Canvas.",
   "author": "iamtheyammer",
   "content_scripts": [
