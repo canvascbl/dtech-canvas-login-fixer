@@ -1,16 +1,9 @@
 {
   "manifest_version": 2,
   "name": "d.tech Canvas Login Fixer",
-  "version": "0.2.1",
+  "version": "0.3",
   "description": "Remembers if you're a parent or a student when logging into d.tech Canvas.",
   "author": "iamtheyammer",
-  "content_scripts": [
-    {
-      "matches": ["https://sites.google.com/dtechhs.org/dtechfamilyportal/home"],
-      "js": ["content_scripts/redirect.bundle.js"],
-      "run_at": "document_start"
-    }
-  ],
   "background": {
     "scripts": ["background.bundle.js"],
     "persistent": true
@@ -18,6 +11,8 @@
   "permissions": [
     "storage",
     "tabs",
+    "webRequest",
+    "*://sites.google.com/dtechhs.org/dtechfamilyportal/*",
     "https://go.canvascbl.com/",
     "https://canvascbl.com/",
     "https://canvascbl.github.io/"
