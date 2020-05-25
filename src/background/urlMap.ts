@@ -26,8 +26,8 @@ function shouldRefetch(fetchedAt: FullUrlMap["fetchedAt"]): boolean {
   return fetchedAt < getEpochSeconds() - 86400
 }
 
-export async function getUrlMap() {
-  if (shouldRefetch(map.fetchedAt)) {
+export async function getUrlMap(forceRefetch: boolean = false) {
+  if (forceRefetch || shouldRefetch(map.fetchedAt)) {
     map = await fetchUrlMap();
   }
 
