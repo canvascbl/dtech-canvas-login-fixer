@@ -1,6 +1,6 @@
 import { parse } from "querystring";
 import { getConfig, setEnabled, setForwardingDestination } from "./storage";
-import {getUrlMap} from "./urlMap";
+import { getUrlMap } from "./urlMap";
 
 const GET_REDIRECT_URL = "GET_REDIRECT_URL";
 const GET_CONFIG = "GET_CONFIG";
@@ -77,9 +77,9 @@ chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
     openSettingsInNewTab();
   }
-})
+});
 
 // fetch the URL map on startup
-getUrlMap()
+getUrlMap();
 // and fetch it every 24h.
-setInterval(() => getUrlMap(true), 86400*1000)
+setInterval(() => getUrlMap(true), 86400 * 1000);

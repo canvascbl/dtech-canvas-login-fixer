@@ -19,11 +19,11 @@ let map: FullUrlMap = {
 };
 
 function getEpochSeconds(): FullUrlMap["fetchedAt"] {
-  return Math.floor(Date.now()/1000)
+  return Math.floor(Date.now() / 1000);
 }
 
 function shouldRefetch(fetchedAt: FullUrlMap["fetchedAt"]): boolean {
-  return fetchedAt < getEpochSeconds() - 86400
+  return fetchedAt < getEpochSeconds() - 86400;
 }
 
 export async function getUrlMap(forceRefetch: boolean = false) {
